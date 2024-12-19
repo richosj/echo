@@ -15,11 +15,13 @@
   top: 0;
   background-color: #fff;
   z-index: 10;
+  width: 100%;
 }
 .header .container {
   height: 50px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .header .logo a {
   display: block;
@@ -28,6 +30,16 @@
   background: url(../img/logo.png);
   background-size: 100% auto;
   font-size: 0;
+}
+.header .h-logout {
+  position: absolute;
+  right: var(--grid-gap);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 21px;
+  height: 18px;
+  background: url(../img/h-logout.png) no-repeat 50% 50%;
+  background-size: 100% auto;
 }
 
 .container {
@@ -304,7 +316,7 @@ dialog {
 
 .btn-reset {
   background-color: #b4cff2;
-  font-size: 11px;
+  font-size: 0;
   font-weight: 600;
   padding: 6px;
   border: 1px solid #d2e2f7;
@@ -314,8 +326,8 @@ dialog {
   content: "";
   display: inline-block;
   background: url(../img/reset.png) no-repeat 50% 50%;
-  width: 7.5px;
-  height: 8.5px;
+  width: 9.5px;
+  height: 10.5px;
   background-size: 100% auto;
   margin-right: 1px;
 }
@@ -372,17 +384,20 @@ dialog {
 }
 .easy-header .container h2 {
   color: #fff;
-  font-size: 18px;
+  font-size: clamp(14px, 2.36vw, 18px);
 }
 
-.user {
+.goto-user {
+  position: absolute;
+  right: calc(2rem + 4px);
+  top: 50%;
+  transform: translateY(-50%);
   display: inline-block;
   vertical-align: middle;
   background: url(../img/user.png) no-repeat 50% 50%;
   background-size: 20.5px auto;
   width: 20.5px;
   height: 23px;
-  margin-left: 10px;
 }
 
 .article {
@@ -518,19 +533,20 @@ dialog {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-gap: 0 4px;
   padding: 10px 6px;
+  height: 74px;
 }
 .btn-group .btn {
-  aspect-ratio: 1/1;
   background-color: #dae3e9;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 54px;
 }
 .btn-group .btn strong {
   font-weight: 900;
-  font-size: 16px;
+  font-size: clamp(13px, 2.1vw, 16px);
 }
 .btn-group .btn.active {
   background-color: #46aef7;
@@ -540,7 +556,7 @@ dialog {
 }
 .btn-group .btn .count {
   margin-top: 7px;
-  padding: 2px 8px;
+  padding: 0 8px;
   background-color: #fff;
   border-radius: 15px;
   line-height: 1;
@@ -553,30 +569,38 @@ dialog {
   font-weight: 600;
   font-size: 10px;
   width: 14px;
-  margin: 0 3px;
+  margin: 0 1px;
 }
 
-/* 채팅 컨테이너 */
+body:not(:has(.btn-group)) .chat-container {
+  height: calc(100svh - 60px);
+}
+body:not(:has(.btn-group)) .chat-container .chart-main {
+  height: calc(100% - 70px);
+}
+
 .chat-container {
   background-color: #e3e9f2;
   position: relative;
-  padding-top: 40px;
-  height: calc(100vh - 100px);
+  padding-top: 5px;
+  height: calc(100svh - 60px - 74px);
 }
 
-/* 헤더 */
 .chat-header {
-  position: absolute;
-  left: 16px;
-  top: 8px;
-  right: 16px;
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
   color: #333;
   background-color: #ccd6dc;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   padding: 4px 0;
   border-radius: 10px;
+}
+.chat-header i {
+  font-style: normal;
+  font-size: 10px;
 }
 
 /* 채팅 메시지 */
@@ -592,23 +616,36 @@ dialog {
 
 .chat-message.received {
   float: left;
+  clear: right;
 }
 
 .chat-message.sent {
   float: right;
+  clear: left;
 }
 
 .chat-message.received .chat-bubble {
   background-color: #fff;
   border: 1px solid #ddd;
+  position: relative;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
+}
+
+.message-check {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  width: 19px;
+  height: 19px;
+  background: url(../img/rply.png) no-repeat 50% 50%/cover;
+  transform: translateX(calc(100% + 4px));
 }
 
 .chat-message.sent .chat-bubble {
   background-color: #d4f8e8;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   text-align: left;
 }
 
@@ -619,10 +656,15 @@ dialog {
 /* 발신자 정보 */
 .chat-sender {
   font-size: 12px;
-  color: #555;
+  font-weight: 600;
+  color: #1c7fc4;
   margin-bottom: 5px;
   display: inline-flex;
   justify-content: space-between;
+}
+.chat-sender .date {
+  color: #333333;
+  font-size: 11px;
 }
 
 .chat .date {
@@ -632,22 +674,31 @@ dialog {
 
 .chat-bubble p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
 }
 
-/* 파일 링크 */
+.file-link-zone {
+  padding: 12px 8px;
+  border-top: 1px solid #ddd;
+  margin: 0 -15px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px 0;
+}
+
 .file-link {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 15px;
+  padding-left: 20px;
+  background: url(../img/down.png) no-repeat 0 50%;
+  background-size: 16.5px auto;
 }
 
-.file-link:hover {
-  text-decoration: underline;
-}
-
-/* 날짜 구분선 */
 .divider {
   text-align: center;
   font-size: 12px;
@@ -656,6 +707,43 @@ dialog {
   overflow: hidden;
   width: 100%;
   clear: both;
+  position: relative;
+}
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1px;
+  left: 0;
+  right: 0;
+  border: 1px dashed #49494b;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.divider span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0 2px;
+  padding: 0 5px;
+  background-color: #e3e9f2;
+  position: relative;
+  z-index: 2;
+}
+.divider i {
+  display: inline-block;
+  vertical-align: middle;
+  background: url(../img/cld.png) no-repeat 0 0;
+  background-size: 100% auto;
+  width: 12px;
+  height: 12px;
+}
+
+.chart-main {
+  overflow-y: auto;
+  height: calc(100% - 66px);
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 /* 입력창 */
@@ -665,36 +753,262 @@ dialog {
   right: 0;
   bottom: 0;
   display: flex;
-  padding: 10px 16px;
+  align-items: center;
+  padding: 16px;
   background-color: #fff;
+  gap: 0 5px;
+  flex-wrap: wrap;
 }
-
-.chart-main {
-  overflow-y: auto;
-  height: calc(100% - 27px - 57px);
-  padding-left: 16px;
-  padding-right: 16px;
+.chat-input .btn-file {
+  width: 18px;
+  height: 18px;
+  background: url(../img/file.png) no-repeat 50% 50%;
+  background-size: 100% auto;
 }
-
-.chat-input input {
+.chat-input .input-g {
   flex: 1;
-  padding: 8px;
+  position: relative;
+}
+.chat-input .input-g input[type=text] {
+  height: 32px;
+  padding: 0 5px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #e7e8ec;
+  width: calc(100% - 16px);
+  padding-right: 16px;
+}
+.chat-input .input-g .btn-send {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  background: #46aef7 url(../img/send.png) no-repeat 50% 50%;
+  background-size: auto 19px;
 }
 
-.chat-input button {
-  margin-left: 5px;
-  padding: 8px 12px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.reply-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 17px;
+}
+.reply-container .reply-target {
+  display: block;
+  padding-left: 15px;
+  background: url(../img/rply-arw.png) no-repeat 0 50%;
+  background-size: 8.5px auto;
+  font-weight: 700;
+  color: #1c1c1c;
+  font-size: 14px;
+}
+.reply-container .message {
+  color: #333333;
+  padding-left: 26px;
+  font-size: 13px;
+  padding-top: 6px;
+}
+.reply-container .close-btn {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 12.5px;
+  height: 12.5px;
+  background: url(../img/rply-close.png) no-repeat;
+  background-size: 100% auto;
+}
+
+.main-search {
+  display: flex;
+  align-items: center;
+  gap: 0 6px;
+  width: 100%;
+  margin-top: 5px;
+}
+.main-search input,
+.main-search select {
+  height: 34px;
+  background-color: #fff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #333;
+  padding-left: 10px;
+}
+.main-search select {
+  width: 100px;
+}
+.main-search .window {
+  position: relative;
+  display: block;
+  flex-grow: 1;
+}
+.main-search .window input[type=text] {
+  width: 100%;
+  padding-right: 30px;
+}
+.main-search .window button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  display: inline-block;
+  background: url(../img/search.png) no-repeat 50% 50%;
+  background-size: 100% auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-size: 14px auto;
+}
+
+.top-group form {
+  width: 100%;
+}
+
+/* 트리 테마 */
+.theme-tree .header .logo a {
+  background-image: url(../img/tree.png);
+  width: 187px;
+}
+.theme-tree .top-group {
+  background: linear-gradient(to right, #f2606b, #ff3b49);
+}
+.theme-tree .top-group .btn-setting {
+  background-color: #f9dbdb;
+}
+.theme-tree .easy-header {
+  background: linear-gradient(to right, #f2606b, #ff3b49);
+}
+.theme-tree .chat-input .input-g .btn-send {
+  background-color: #f94c58;
+  background-image: url(../img/send-white.png);
+}
+.theme-tree .icon-bell.active {
+  background-image: url(../img/bell3.png);
+}
+.theme-tree .main-search .window button {
+  background-color: #ff3b49;
+}
+
+body:has(.main-search) .post {
+  margin-top: -40px;
+}
+
+/* 벨리 테마 */
+.theme-valley .header .logo a {
+  background-image: url(../img/valley.png);
+  width: 151.5px;
+}
+.theme-valley .top-group {
+  background: linear-gradient(to right, #4fc36e, #03ac78);
+  height: 140px;
+}
+.theme-valley .main-search .window button {
+  background-color: #00ab78;
+}
+.theme-valley .top-group .btn-setting {
+  background-color: #c2ffc9;
+}
+.theme-valley .easy-header {
+  background: linear-gradient(to right, #4fc36e, #03ac78);
+}
+.theme-valley .chat-input .input-g .btn-send {
+  background-color: #51cb99;
+  background-image: url(../img/send-white.png);
+}
+.theme-valley .icon-bell.active {
+  background-image: url(../img/bell2.png);
+}
+
+.nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1001;
+  display: none;
+}
+.nav.active {
+  display: flex;
+  justify-content: flex-end;
+}
+.nav .nav-container {
+  position: relative;
+  width: 78%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  padding: 0 12px;
+}
+.nav .nav-container header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0 0;
+  margin-bottom: 40px;
+}
+.nav .nav-container header h2 {
+  font-weight: 500;
+  color: #222;
   font-size: 16px;
+  background: url(../img/push-check.png) no-repeat 0 50%;
+  background-size: 17px 17px;
+  padding-left: 25px;
 }
-
-.chat-input button:hover {
-  background-color: #45a049;
+.nav .nav-container header h2.on {
+  background-image: url(../img/push-check-on.png);
+}
+.nav .nav-container header button.close {
+  display: block;
+  background: url(../img/close-menu.png) no-repeat 50% 50%;
+  width: 17px;
+  height: 17px;
+  background-size: 100% auto;
+}
+.nav .nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0;
+}
+.nav .nav-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  border: 1px solid #dadcde;
+  border-radius: 5px;
+  padding: 0 13px 0 22px;
+  height: 53px;
+  font-size: 19px;
+}
+.nav .nav-menu a i {
+  display: inline-block;
+  background: url(../img/menu.png) no-repeat;
+  width: 17px;
+  height: 13px;
+  background-size: 100% auto;
+}
+.nav .nav-logout {
+  position: absolute;
+  bottom: 40px;
+  right: 12px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-content: center;
+  justify-content: center;
+  background-color: #f7f7f7;
+  gap: 0 2px;
+  font-size: 12px;
+  padding: 7px 8px;
+}
+.nav .nav-logout i {
+  display: inline-block;
+  background: url(../img/logout.png) no-repeat;
+  width: 14px;
+  height: 12.5px;
+  background-size: 100% auto;
 }/*# sourceMappingURL=style.css.map */
