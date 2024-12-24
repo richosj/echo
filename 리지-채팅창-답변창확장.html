@@ -16,8 +16,8 @@
             <button type="button" class="back">
                 <i class="icon-back"></i>
             </button>
-            <h2>경찰청_신임교수 요원 역량강화 교육</h2>
 
+            <h2>경찰청_신임교수 요원 역량강화 교육 </h2>
             <a href="#" class="goto-user"></a>
             <div class="toggle-options">
                 <button type="button">
@@ -72,7 +72,6 @@
         <div class="chat-container">
             <!-- 대화 더보기 -->
             <div class="chart-main">
-                <!-- 첫 번째 메시지 -->
                 <div class="chat-message received">
                     <div class="chat-sender"><span class="name">김당당 대리(엑스퍼트컨설팅)</span> <span class="date">2024.12.8</span></div>
                     <div class="chat-bubble">
@@ -92,6 +91,19 @@
                     <p>4월부터는 코칭리더십 과정이 내부 필수고정</p>
                     </div>
                 </div>
+
+                <!-- 답장 메시지 -->
+                <div class="chat-message sent">
+                    <div class="chat-sender"><span class="date">2024.12.8</span></div>
+                    <div class="chat-bubble">
+                        <div class="rply-tit">홍길동 주임에게 답장</div>
+                        <div class="rply-org-ment">
+                            4월부터는 코칭리더십 과정이 내부 필수고정으로 진행하게 되어 리더십 선택과정진행하지 않게
+                            되었으며, 이에 따라 아래와 같은 조치를 부탁드리고자 합니다
+                        </div>
+                        <p>4월부터는 코칭리더십 과정이 내부 필수고정</p>
+                    </div>
+                </div>
         
                 <!-- 날짜 구분선 -->
                 <div class="divider"><span><i></i>2024.12.13</span></div>
@@ -107,15 +119,22 @@
         
             <!-- 입력창 -->
             <div class="chat-input">
+                <div class="reply-container">
+                    <strong class="reply-target">홍길동 주임에게 답장</strong>
+                    <p class="message">
+                    내부 컨펌 과정에서 교육 기본 요청 사항이 변경되었습니다.<br />
+                    첨부파일 확인하신 후 수정해주세요.
+                    </p>
+                    <button class="close-btn"></button>
+                </div>
                 <button type="button" class="btn-file"></button>
                 <div class="input-g">
-                    <input type="text" class="input-item" placeholder="메세지 입력" />
+                    <textarea name="" id="" rows="4" class="extend input-item"></textarea>
                     <button type="button" class="btn-send"></button>
                 </div>
             </div>
         </div>
         <!-- chat -->
-
     </div>
 </div>
 </body>

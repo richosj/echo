@@ -569,7 +569,7 @@ body:not(:has(.btn-group)){
 .chat-container {
   background-color: #e3e9f2;
   position: relative;
-  padding-top: 5px;
+  padding-top: 15px;
   height: calc(100svh - 60px - 74px);
 }
 .chat-header {
@@ -733,6 +733,7 @@ body:not(:has(.btn-group)){
 /* 입력창 */
 .chat-input {
   position: absolute;
+  z-index: 2;
   left: 0;
   right:0;
   bottom: 0;
@@ -752,8 +753,9 @@ body:not(:has(.btn-group)){
   .input-g{
     flex: 1;
     position: relative;
-    input[type='text'] {
-      height: 32px;
+    .input-item {
+      vertical-align: top;
+      min-height: 32px;
       padding: 0 5px;
       font-size: 14px;
       border: 1px solid #ccc;
@@ -761,12 +763,15 @@ body:not(:has(.btn-group)){
       background-color: #e7e8ec;
       width: calc(100% - 16px);
       padding-right: 16px;
-
+    }
+    .input-item.extend{
+      max-height: 67px;
     }
     .btn-send {
       position: absolute;
       right: 0;
-      top: 0;
+      //top: 0;
+      bottom: 0;
       border-radius: 50%;
       height: 32px;
       width: 32px;
@@ -876,6 +881,8 @@ body:not(:has(.btn-group)){
     }
   }
 }
+.rply-tit{font-size: 12px;color: #000;font-weight: 600;margin-bottom: 3px;}
+.rply-org-ment{color: #888;font-size: 13px;padding-bottom: 8px;margin-bottom: 8px;border-bottom: 1px dashed #ddd;}
 
 body:has(.main-search){
   .post{margin-top: -40px;}
@@ -992,6 +999,38 @@ body:has(.main-search){
         width: 14px;
         height: 12.5px;
         background-size: 100% auto;
+    }
+  }
+}
+
+dialog:has(.dialog-rply){
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0;
+  .dialog-container{
+    border-radius: 0;
+    padding: 7px 20px;
+  }
+}
+.dialog-rply{
+  .fn{
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #000;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 15px 0;
+    &::after{
+      content:"";
+      display: block;
+      width: 5px;
+      height: 7px;
+      background: url(../img/arw.png) no-repeat 50% 50%;
+      background-size: 100% auto;
+
     }
   }
 }
