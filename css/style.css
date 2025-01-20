@@ -603,27 +603,62 @@ body:not(:has(.btn-group)) .chat-container .chart-main {
   font-size: 10px;
 }
 
+.chat-message-item + .chat-message-item {
+  margin-top: 30px;
+}
+
+.chat-message-item:has(.sent) {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* 채팅 메시지 */
 .chat-message {
   display: inline-flex;
   flex-direction: column;
   vertical-align: top;
+  position: relative;
   max-width: calc(100% - 30px);
 }
 .chat-message + .chat-message {
   margin-top: 30px;
 }
-
-.chat-message.received {
-  float: left;
-  clear: right;
+.chat-message .check-usr {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 0 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px;
+  padding: 2px 5px;
+  transform: translateX(calc(-100% - 5px));
+  color: #2435b2;
+  font-size: 11px;
+  background-color: #ccd6dc;
+  line-height: 1;
+}
+.chat-message .check-usr span {
+  padding-top: 1px;
+  display: block;
+}
+.chat-message .check-usr::after {
+  content: "";
+  display: inline-block;
+  background: url(../img/usr.png) no-repeat 0 0;
+  width: 9px;
+  height: 12px;
+  background-size: 100% auto;
 }
 
-.chat-message.sent {
-  float: right;
+/*
+.chat-message.received{
+  float: left;
   clear: left;
 }
-
+.chat-message.sent{float: right;clear: left;}
+*/
 .chat-message.received .chat-bubble {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -772,7 +807,7 @@ body:not(:has(.btn-group)) .chat-container .chart-main {
 }
 .chat-input .input-g .input-item {
   vertical-align: top;
-  height: 32px;
+  min-height: 32px;
   padding: 0 5px;
   font-size: 14px;
   border: 1px solid #ccc;
@@ -782,8 +817,7 @@ body:not(:has(.btn-group)) .chat-container .chart-main {
   padding-right: 16px;
 }
 .chat-input .input-g .input-item.extend {
-  height: auto;
-  width: calc(100% - 16px - 34px);
+  max-height: 67px;
 }
 .chat-input .input-g .btn-send {
   position: absolute;
