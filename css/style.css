@@ -164,8 +164,8 @@
 /* 로그인 */
 body:has(.login) {
   width: 100vw;
-  height: 100vh;
-  background: #c5d3e7 url(../img/login.png) no-repeat 50% 50%;
+  height: 100dvh;
+  background: url(../img/login.gif) no-repeat 50% 50%;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -184,30 +184,31 @@ body:has(.login) {
   flex-direction: column;
   gap: 10px 0;
 }
-.login-logo p {
-  font-weight: 700;
-  color: #6f727f;
-  font-size: 11px;
-}
 .login-logo img {
-  height: 38px;
+  height: 78px;
 }
 .login-frame {
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   padding: 42px 25px 50px;
 }
+.login .logos {
+  text-align: center;
+  padding-top: 45px;
+}
+.login .logos img {
+  height: 24px;
+}
 
 .form-group {
-  padding-top: 50px;
+  padding-top: 25px;
 }
 .form-group .input {
   display: block;
   width: 100%;
   border: 1px solid #ededf3;
-  border-radius: 20px;
-  height: 44px;
+  border-radius: 5px;
+  height: 50px;
   background-color: #fff;
   font-weight: 500;
   font-size: 16px;
@@ -215,7 +216,7 @@ body:has(.login) {
   padding-right: 10px;
 }
 .form-group .input[type=password] {
-  margin: 20px 0 45px;
+  margin: 8px 0 15px;
 }
 .form-group .input::-moz-placeholder {
   color: #aaabb5;
@@ -229,7 +230,7 @@ body:has(.login) {
   width: 100%;
   color: #fff;
   background-color: #0161eb;
-  border-radius: 30px;
+  border-radius: 5px;
   font-weight: 700;
   height: 60px;
   font-size: 20px;
